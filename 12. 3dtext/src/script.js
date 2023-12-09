@@ -34,7 +34,7 @@ matcapTexture.colorSpace = THREE.SRGBColorSpace
  */
 const fontLoader = new FontLoader(LoadingManager)
 
-debugObject.text = 'SHINE'
+debugObject.text = 'Desmond'
 fontLoader.load(
     '/fonts/helvetiker_regular.typeface.json',
     (font) =>
