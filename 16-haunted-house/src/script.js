@@ -203,7 +203,7 @@ scene.add(pointLight, pointLight2)
 
 const pointLightHelper = new THREE.PointLightHelper(pointLight)
 const pointLight2Helper = new THREE.PointLightHelper(pointLight2, 0.1)
-scene.add(pointLightHelper, pointLight2Helper)
+// scene.add(pointLightHelper, pointLight2Helper)
 
 // Directional light
 const moonLight = new THREE.DirectionalLight('#ffff4f', 0.5)
@@ -222,7 +222,7 @@ const moonLightShadowCameraHelper = new THREE.CameraHelper(moonLight.shadow.came
 // const ghost1ShadowCameraHelper = new THREE.CameraHelper(ghost1.shadow.camera)
 // const ghost2ShadowCameraHelper = new THREE.CameraHelper(ghost2.shadow.camera)
 // scene.add(moonLightShadowCameraHelper, ghost1ShadowCameraHelper, ghost2ShadowCameraHelper)
-scene.add(moonLightShadowCameraHelper)
+// scene.add(moonLightShadowCameraHelper)
 
 /**
  * Sizes
