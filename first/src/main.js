@@ -23,33 +23,51 @@ const scene = new THREE.Scene();
 //* Geometry
 const BeeGroup = new THREE.Group();
 BeeGroup.position.set(0,0,0);
-scene.add(BeeGroup);
+// scene.add(BeeGroup);
 
-
-const cube1 = new THREE.Mesh(
-    new THREE.BoxGeometry(1, 1, 1,2,2,2),
-    new THREE.MeshBasicMaterial({ color: debugObject.color })
+const plane = new THREE.Mesh(
+    new THREE.PlaneGeometry(100, 100),
+    new THREE.MeshBasicMaterial({ color: 0x555555, side: THREE.DoubleSide })
 );
-cube1.position.set(0,0,0);
-cube1.name = 'cube1';
-BeeGroup.add(cube1);
 
+// Modify the position of one of the vertices
+const vertices = plane.geometry.attributes.position.array;
+vertices[2] = -1; // Increase the y-coordinate of the first vertex
 
-const cube2 = new THREE.Mesh(
-    new THREE.BoxGeometry(1, 1, 1),
+plane.rotation.x = - Math.PI * 1.5;
+// scene.add(plane);
+
+const building1 = new THREE.Mesh(
+    new THREE.BoxGeometry(7, 20, 10),
     new THREE.MeshBasicMaterial({ color: 0x60bf80 })
 );
-cube2.position.set(-1.5,0,0);
-cube2.name = 'cube2';
-BeeGroup.add(cube2);
+building1.position.set(-10,10,0);
+// scene.add(building1);
 
-const cube3 = new THREE.Mesh(
-    new THREE.BoxGeometry(1, 1, 1),
-    new THREE.MeshBasicMaterial({ color: 0x70e0e0 })
-);
-cube3.position.set(1.5,0,0);
-cube3.name = 'cube3';
-BeeGroup.add(cube3);
+// const cube1 = new THREE.Mesh(
+//     new THREE.BoxGeometry(1, 1, 1,2,2,2),
+//     new THREE.MeshBasicMaterial({ color: debugObject.color })
+// );
+// cube1.position.set(0,0,0);
+// cube1.name = 'cube1';
+// BeeGroup.add(cube1);
+
+
+// const cube2 = new THREE.Mesh(
+//     new THREE.BoxGeometry(1, 1, 1),
+//     new THREE.MeshBasicMaterial({ color: 0x60bf80 })
+// );
+// cube2.position.set(-1.5,0,0);
+// cube2.name = 'cube2';
+// BeeGroup.add(cube2);
+
+// const cube3 = new THREE.Mesh(
+//     new THREE.BoxGeometry(1, 1, 1),
+//     new THREE.MeshBasicMaterial({ color: 0x70e0e0 })
+// );
+// cube3.position.set(1.5,0,0);
+// cube3.name = 'cube3';
+// BeeGroup.add(cube3);
 
 // mesh.position.normalize(); // normalize() to get the direction of the mesh AKA unit vector
 // console.log(mesh.position.length()); // length() to get the distance from the origin to the mesh
@@ -71,27 +89,27 @@ BeeGroupRotationFolder.add(BeeGroup.rotation, 'x').min(-2).max(2).step(0.01).nam
 BeeGroupRotationFolder.add(BeeGroup.rotation, 'y').min(-2).max(2).step(0.01).name('y rotation');
 BeeGroupRotationFolder.add(BeeGroup.rotation, 'z').min(-2).max(2).step(0.01).name('z rotation');
 
-gui.add(BeeGroup, 'visible');
-gui.add(cube1.material,'wireframe');
-gui.addColor(debugObject,'color')
-    .onChange(() => {
-        cube1.material.color.set(debugObject.color);
-    })
-gui.add(debugObject,'spin');
-gui.add(debugObject,'subdivision')
-    .min(1)
-    .max(5)
-    .step(1)
-    .onChange(() => {
-        cube1.geometry = new THREE.BoxGeometry(1, 1, 1,debugObject.subdivision,debugObject.subdivision,debugObject.subdivision);
-    })
+// gui.add(BeeGroup, 'visible');
+// gui.add(cube1.material,'wireframe');
+// gui.addColor(debugObject,'color')
+//     .onChange(() => {
+//         cube1.material.color.set(debugObject.color);
+//     })
+// gui.add(debugObject,'spin');
+// gui.add(debugObject,'subdivision')
+//     .min(1)
+//     .max(5)
+//     .step(1)
+//     .onChange(() => {
+//         cube1.geometry = new THREE.BoxGeometry(1, 1, 1,debugObject.subdivision,debugObject.subdivision,debugObject.subdivision);
+//     })
 
-console.log(cube1.geometry)
+// console.log(cube1.geometry)
 
 //* Axes helper
 const axesHelper = new THREE.AxesHelper();
-const gridHelper = new THREE.GridHelper(5, 5);
-scene.add(axesHelper, gridHelper);
+const gridHelper = new THREE.GridHelper(100, 100);
+// scene.add(axesHelper, gridHelper);
 
 // Camera
 const sizes = {
